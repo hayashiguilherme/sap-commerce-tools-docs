@@ -85,6 +85,7 @@
   .feature > div { max-width: 640px; }
   .feature h3 { margin: 0 0 6px; font-size: 19px; }
   .feature p { margin: 0; color: var(--muted); }
+  .badge { font-size: 12px; font-weight: 700; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: #F5B83D; color: #17202B; }
 
   .steps { margin: 0; padding-left: 22px; }
   .steps li { margin: 0 0 10px; }
@@ -103,6 +104,7 @@
     </a>
     <nav>
       <a href="#features">Features</a>
+      <a href="#pro">Pro</a>
       <a href="#install">Install</a>
       <a href="https://github.com/hayashiguilherme/sap-commerce-tools-docs/issues">Support</a>
     </nav>
@@ -114,7 +116,7 @@
     <div>
       <p class="eyebrow">VS Code and Cursor extension</p>
       <h1>Tools for SAP Commerce</h1>
-      <p class="lead">ImpEx and FlexibleSearch support that knows your type system. The extension reads the <code>items.xml</code> files of your project, so completion, validation and navigation work with your real item types, including the ones from your custom extensions. With the server running, queries, exports and ImpEx imports run from the editor, without opening the hAC.</p>
+      <p class="lead">ImpEx and FlexibleSearch support that knows your type system. The extension reads the <code>items.xml</code> files of your project, so completion, validation and navigation work with your real item types, including the ones from your custom extensions. With the server running, queries run from the editor, without opening the hAC.</p>
       <div class="actions">
         <a class="button primary" href="https://marketplace.visualstudio.com/items?itemName=ghlabs.sap-commerce-tools">Install for VS Code</a>
         <a class="button" href="https://open-vsx.org/extension/ghlabs/sap-commerce-tools">Install for Cursor <small>Open VSX</small></a>
@@ -128,7 +130,7 @@
 
   <section id="features">
     <h2>What it does</h2>
-    <p class="section-lead">Editing support runs locally in your editor, with no configuration: the platform installation next to your project is found automatically. Running queries and imports only needs the hAC URL and user of each environment.</p>
+    <p class="section-lead">Editing support runs locally in your editor, with no configuration: the platform installation next to your project is found automatically. Running queries only needs the hAC URL and user of each environment.</p>
     <div class="features">
       <div class="feature">
         <div>
@@ -156,20 +158,14 @@
           <h3>FlexibleSearch, checked like ImpEx</h3>
           <p>In <code>.fxs</code> files, item types and attributes are completed after <code>FROM {</code> and <code>{alias.</code>, unknown types, attributes and aliases are flagged with a suggestion, and hover and Go to Definition open the <code>items.xml</code>.</p>
         </div>
+        <figure class="shot"><img src="images/demo-fxs-validation.gif" width="800" height="166" alt="Attribute completion and an unknown attribute flagged in a FlexibleSearch query" loading="lazy"></figure>
       </div>
       <div class="feature">
         <div>
           <h3>Run queries against your server</h3>
-          <p>Cmd+Enter runs the query in the hAC of the environment you pick: local, dev, stage or prod, each in its own color. Rows load as you scroll, with no row limit, and references show their code instead of a PK.</p>
+          <p>Cmd+Enter runs the query in the hAC of the environment you pick: local, dev, stage or prod, each in its own color. Rows load as you scroll, with no row limit, references show their code instead of a PK, and every row exports to CSV.</p>
         </div>
-        <figure class="shot"><img src="images/fxs-console-results.png" width="656" height="297" alt="FlexibleSearch results for 7,166 products in the SAP Commerce panel" loading="lazy"></figure>
-      </div>
-      <div class="feature">
-        <div>
-          <h3>Export and import, end to end</h3>
-          <p>Every row exports to CSV or to an ImpEx block with references by code and catalog version, and any ImpEx file imports into the environment from its editor. The 7,166 products of the Powertools demo catalog were queried, exported and imported back in 10.5 seconds, all from the editor.</p>
-        </div>
-        <figure class="shot"><img src="images/fxs-console-impex-export.png" width="1550" height="169" alt="ImpEx exported from a FlexibleSearch query, with media referenced by code and catalog version" loading="lazy"></figure>
+        <figure class="shot"><img src="images/demo-fxs-console.gif" width="800" height="166" alt="A FlexibleSearch query run with Cmd+Enter, with 7,166 products in the results panel" loading="lazy"></figure>
       </div>
       <div class="feature">
         <div>
@@ -181,13 +177,41 @@
     </div>
   </section>
 
+  <section id="pro">
+    <h2>Pro <span class="badge">coming soon</span></h2>
+    <p class="section-lead">Writing ImpEx and FlexibleSearch and querying your servers stay free. The Pro edition adds the features that move and change data. They are built and tested, and the buttons are already in the editor, marked PRO.</p>
+    <div class="features">
+      <div class="feature">
+        <div>
+          <h3>Export results to ImpEx</h3>
+          <p>Every row of a query becomes an <code>INSERT_UPDATE</code> block for another environment: keys marked unique, references by their key, media by code and catalog version so Staged and Online never mix, and enums by code. Works with <code>SELECT *</code> too.</p>
+        </div>
+        <figure class="shot"><img src="images/fxs-console-impex-export.png" width="1550" height="169" alt="ImpEx exported from a FlexibleSearch query, with media referenced by code and catalog version" loading="lazy"></figure>
+      </div>
+      <div class="feature">
+        <div>
+          <h3>Import ImpEx into an environment</h3>
+          <p>Import a file, or the selection, from its editor, with a confirmation for every import and the environment name typed for production. Lines that fail open in a new editor with the reason, ready to fix and import again. The 7,166 products of the Powertools demo catalog were queried, exported and imported back in 7.3 seconds, without opening the hAC.</p>
+        </div>
+        <figure class="shot"><img src="images/demo-pro-impex-roundtrip.gif" width="800" height="166" alt="ImpEx exported from a query and imported back into the server" loading="lazy"></figure>
+      </div>
+      <div class="feature">
+        <div>
+          <h3>Edit results in place</h3>
+          <p>Change values right in the results grid, with an editor for each attribute type, review before and after, and save in one transaction through the model service, so interceptors and validation run as usual.</p>
+        </div>
+      </div>
+    </div>
+    <p class="section-lead" style="margin-top: 36px">Want Pro for your team? Tell us in the <a href="https://github.com/hayashiguilherme/sap-commerce-tools-docs/issues">issue tracker</a>.</p>
+  </section>
+
   <section id="install">
     <h2>Get started</h2>
     <ol class="steps">
       <li>Install <strong>Tools for SAP Commerce</strong> from the <a href="https://marketplace.visualstudio.com/items?itemName=ghlabs.sap-commerce-tools">VS Code Marketplace</a>, or in Cursor from the Extensions view (<a href="https://open-vsx.org/extension/ghlabs/sap-commerce-tools">Open VSX</a>).</li>
       <li>Open your SAP Commerce project.</li>
       <li>Open an <code>.impex</code> or <code>.fxs</code> file.</li>
-      <li>To run queries and imports, start the server and run <strong>SAP Commerce Tools: Add Environment...</strong> with the hAC URL and user.</li>
+      <li>To run queries, start the server and run <strong>SAP Commerce Tools: Add Environment...</strong> with the hAC URL and user.</li>
     </ol>
     <p class="section-lead">Questions, problems and ideas are welcome in the <a href="https://github.com/hayashiguilherme/sap-commerce-tools-docs/issues">issue tracker</a>.</p>
   </section>
