@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tools for SAP Commerce · ghlabs</title>
+<meta name="description" content="ImpEx support for SAP Commerce (Hybris) in VS Code and Cursor: validation against your type system, completion, navigation to items.xml and highlighting.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='2' y='2' width='60' height='60' rx='13' fill='%2317202B'/%3E%3Cg fill='none' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round' stroke='%234FB3F6'%3E%3Cpath d='M7 17h5l4 23h26l4-16H14'/%3E%3Ccircle cx='20' cy='48' r='3.2'/%3E%3Ccircle cx='38' cy='48' r='3.2'/%3E%3Cpath d='M15 31.5h29M24 24l1.8 16M34 24l-.8 16'/%3E%3C/g%3E%3Cpath d='M44 8.5l-4.5 5.5 4.5 5.5M54 8.5l4.5 5.5-4.5 5.5' fill='none' stroke='%23F5B83D' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --surface: #ffffff;
+    --border: #dde1e7;
+    --text: #17202b;
+    --muted: #556070;
+    --accent: #1a7fc4;
+    --accent-ink: #ffffff;
+    --amber: #b7790f;
+    --code-bg: #eef1f5;
+    --shadow: 0 1px 2px rgba(23, 32, 43, 0.06), 0 8px 24px rgba(23, 32, 43, 0.06);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #10161e;
+      --surface: #17202b;
+      --border: #263241;
+      --text: #e8edf3;
+      --muted: #9aa7b6;
+      --accent: #4fb3f6;
+      --accent-ink: #0d1620;
+      --amber: #f5b83d;
+      --code-bg: #1e2936;
+      --shadow: none;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+  a { color: var(--accent); }
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.9em;
+    background: var(--code-bg);
+    padding: 0.1em 0.35em;
+    border-radius: 4px;
+  }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 0 16px; }
+
+  header.top { border-bottom: 1px solid var(--border); }
+  header.top .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--text); text-decoration: none; letter-spacing: 0.01em; }
+  .brand svg { width: 28px; height: 28px; }
+  .top nav a { color: var(--muted); text-decoration: none; margin-left: 20px; font-size: 15px; }
+  .top nav a:hover { color: var(--text); }
+
+  .hero { padding: 56px 0 40px; display: grid; grid-template-columns: 1fr; gap: 32px; }
+  .eyebrow { color: var(--amber); font-weight: 600; font-size: 14px; letter-spacing: 0.04em; text-transform: uppercase; margin: 0 0 8px; }
+  h1 { font-size: clamp(32px, 6vw, 48px); line-height: 1.1; margin: 0 0 16px; letter-spacing: -0.02em; }
+  .lead { font-size: 19px; color: var(--muted); margin: 0 0 28px; max-width: 640px; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+  .button {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 12px 18px; border-radius: 8px; font-weight: 600; text-decoration: none;
+    border: 1px solid var(--border); color: var(--text); background: var(--surface);
+  }
+  .button.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+  .button small { font-weight: 400; opacity: 0.8; }
+  .shot {
+    margin: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 8px; box-shadow: var(--shadow);
+  }
+  .shot img { display: block; width: 100%; height: auto; border-radius: 6px; }
+  .shot figcaption { color: var(--muted); font-size: 14px; padding: 8px 4px 2px; }
+
+  section { padding: 40px 0; border-top: 1px solid var(--border); }
+  h2 { font-size: 26px; margin: 0 0 8px; letter-spacing: -0.01em; }
+  .section-lead { color: var(--muted); margin: 0 0 28px; max-width: 640px; }
+  .features { display: grid; gap: 44px; }
+  .feature { display: grid; gap: 14px; }
+  .feature > div { max-width: 640px; }
+  .feature h3 { margin: 0 0 6px; font-size: 19px; }
+  .feature p { margin: 0; color: var(--muted); }
+
+  .steps { margin: 0; padding-left: 22px; }
+  .steps li { margin: 0 0 10px; }
+
+  footer { border-top: 1px solid var(--border); padding: 28px 0 40px; color: var(--muted); font-size: 14px; }
+  footer p { margin: 0 0 8px; }
+
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="/">
+      <svg viewBox="0 0 64 64" aria-hidden="true"><rect x="2" y="2" width="60" height="60" rx="13" fill="#17202B"/><g fill="none" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" stroke="#4FB3F6"><path d="M7 17h5l4 23h26l4-16H14"/><circle cx="20" cy="48" r="3.2"/><circle cx="38" cy="48" r="3.2"/><path d="M15 31.5h29M24 24l1.8 16M34 24l-.8 16"/></g><path d="M44 8.5l-4.5 5.5 4.5 5.5M54 8.5l4.5 5.5-4.5 5.5" fill="none" stroke="#F5B83D" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(49 14.6)"><circle cx="0" cy="-3.4" r="1.9" fill="#F5B83D"/><circle cx="0" cy="2.4" r="1.9" fill="#F5B83D"/><path d="M.4 2.6c.3 1.6-.3 3-1.6 4" fill="none" stroke="#F5B83D" stroke-width="2.4" stroke-linecap="round"/></g></svg>
+      ghlabs
+    </a>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#install">Install</a>
+      <a href="https://github.com/hayashiguilherme/sap-commerce-tools-docs/issues">Support</a>
+    </nav>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="hero">
+    <div>
+      <p class="eyebrow">VS Code and Cursor extension</p>
+      <h1>Tools for SAP Commerce</h1>
+      <p class="lead">ImpEx support that knows your type system. The extension reads the <code>items.xml</code> files of your project, so completion, validation and navigation work with your real item types, including the ones from your custom extensions.</p>
+      <div class="actions">
+        <a class="button primary" href="https://marketplace.visualstudio.com/items?itemName=ghlabs.sap-commerce-tools">Install for VS Code</a>
+        <a class="button" href="https://open-vsx.org/extension/ghlabs/sap-commerce-tools">Install for Cursor <small>Open VSX</small></a>
+      </div>
+    </div>
+    <figure class="shot">
+      <img src="images/demo-completion.gif" width="800" height="189" alt="Completion of item types, attributes and modifiers in an ImpEx header">
+      <figcaption>Types, attributes and modifiers suggested from your <code>items.xml</code>.</figcaption>
+    </figure>
+  </div>
+
+  <section id="features">
+    <h2>What it does</h2>
+    <p class="section-lead">Everything runs locally in your editor. No configuration is needed: the platform installation next to your project is found automatically.</p>
+    <div class="features">
+      <div class="feature">
+        <div>
+          <h3>Validation while you type</h3>
+          <p>Unknown item types and attributes are flagged with a "Did you mean" suggestion, together with undefined macros and rows that don't match the header.</p>
+        </div>
+        <figure class="shot"><img src="images/demo-validation-2.gif" width="800" height="135" alt="An unknown item type flagged with a suggestion" loading="lazy"></figure>
+      </div>
+      <div class="feature">
+        <div>
+          <h3>The matching column, highlighted</h3>
+          <p>On a value, the header column lights up. On a header column, the values below it do. Long rows stay easy to read.</p>
+        </div>
+        <figure class="shot"><img src="images/demo-column-highlight.gif" width="800" height="135" alt="Header column highlighted for the value under the cursor" loading="lazy"></figure>
+      </div>
+      <div class="feature">
+        <div>
+          <h3>Straight to the items.xml</h3>
+          <p>Hover a type to see its inheritance and the files that declare it. Go to Definition opens the original declaration; Go to Implementations lists every extension that adds to it.</p>
+        </div>
+        <figure class="shot"><img src="images/demo-navigation.gif" width="800" height="480" alt="Hover over a type and Go to Definition into core-items.xml" loading="lazy"></figure>
+      </div>
+      <div class="feature">
+        <div>
+          <h3>Value suggestions</h3>
+          <p>Enum attributes suggest their values, merged from every extension, and boolean attributes suggest true and false.</p>
+        </div>
+        <figure class="shot"><img src="images/demo-values.gif" width="800" height="113" alt="Enum values suggested in an ImpEx data row" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
+  <section id="install">
+    <h2>Get started</h2>
+    <ol class="steps">
+      <li>Install <strong>Tools for SAP Commerce</strong> from the <a href="https://marketplace.visualstudio.com/items?itemName=ghlabs.sap-commerce-tools">VS Code Marketplace</a>, or in Cursor from the Extensions view (<a href="https://open-vsx.org/extension/ghlabs/sap-commerce-tools">Open VSX</a>).</li>
+      <li>Open your SAP Commerce project.</li>
+      <li>Open an <code>.impex</code> file.</li>
+    </ol>
+    <p class="section-lead">Questions, problems and ideas are welcome in the <a href="https://github.com/hayashiguilherme/sap-commerce-tools-docs/issues">issue tracker</a>.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© 2026 ghlabs · Tools for SAP Commerce is published as <code>ghlabs.sap-commerce-tools</code>.</p>
+    <p>SAP, SAP Commerce and Hybris are trademarks of SAP SE. Visual Studio Code is a trademark of Microsoft Corporation. This is an independent project, not affiliated with or endorsed by SAP SE or Microsoft Corporation.</p>
+  </div>
+</footer>
+</body>
+</html>
