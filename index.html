@@ -114,7 +114,7 @@
     <div>
       <p class="eyebrow">VS Code and Cursor extension</p>
       <h1>Tools for SAP Commerce</h1>
-      <p class="lead">ImpEx support that knows your type system. The extension reads the <code>items.xml</code> files of your project, so completion, validation and navigation work with your real item types, including the ones from your custom extensions.</p>
+      <p class="lead">ImpEx and FlexibleSearch support that knows your type system. The extension reads the <code>items.xml</code> files of your project, so completion, validation and navigation work with your real item types, including the ones from your custom extensions. With the server running, queries, exports and ImpEx imports run from the editor, without opening the hAC.</p>
       <div class="actions">
         <a class="button primary" href="https://marketplace.visualstudio.com/items?itemName=ghlabs.sap-commerce-tools">Install for VS Code</a>
         <a class="button" href="https://open-vsx.org/extension/ghlabs/sap-commerce-tools">Install for Cursor <small>Open VSX</small></a>
@@ -128,7 +128,7 @@
 
   <section id="features">
     <h2>What it does</h2>
-    <p class="section-lead">Everything runs locally in your editor. No configuration is needed: the platform installation next to your project is found automatically.</p>
+    <p class="section-lead">Editing support runs locally in your editor, with no configuration: the platform installation next to your project is found automatically. Running queries and imports only needs the hAC URL and user of each environment.</p>
     <div class="features">
       <div class="feature">
         <div>
@@ -153,6 +153,26 @@
       </div>
       <div class="feature">
         <div>
+          <h3>FlexibleSearch, checked like ImpEx</h3>
+          <p>In <code>.fxs</code> files, item types and attributes are completed after <code>FROM {</code> and <code>{alias.</code>, unknown types, attributes and aliases are flagged with a suggestion, and hover and Go to Definition open the <code>items.xml</code>.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <div>
+          <h3>Run queries against your server</h3>
+          <p>Cmd+Enter runs the query in the hAC of the environment you pick: local, dev, stage or prod, each in its own color. Rows load as you scroll, with no row limit, and references show their code instead of a PK.</p>
+        </div>
+        <figure class="shot"><img src="images/fxs-console-results.png" width="656" height="297" alt="FlexibleSearch results for 7,166 products in the SAP Commerce panel" loading="lazy"></figure>
+      </div>
+      <div class="feature">
+        <div>
+          <h3>Export and import, end to end</h3>
+          <p>Every row exports to CSV or to an ImpEx block with references by code and catalog version, and any ImpEx file imports into the environment from its editor. The 7,166 products of the Powertools demo catalog were queried, exported and imported back in 10.5 seconds, all from the editor.</p>
+        </div>
+        <figure class="shot"><img src="images/fxs-console-impex-export.png" width="1550" height="169" alt="ImpEx exported from a FlexibleSearch query, with media referenced by code and catalog version" loading="lazy"></figure>
+      </div>
+      <div class="feature">
+        <div>
           <h3>Value suggestions</h3>
           <p>Enum attributes suggest their values, merged from every extension, and boolean attributes suggest true and false.</p>
         </div>
@@ -166,7 +186,8 @@
     <ol class="steps">
       <li>Install <strong>Tools for SAP Commerce</strong> from the <a href="https://marketplace.visualstudio.com/items?itemName=ghlabs.sap-commerce-tools">VS Code Marketplace</a>, or in Cursor from the Extensions view (<a href="https://open-vsx.org/extension/ghlabs/sap-commerce-tools">Open VSX</a>).</li>
       <li>Open your SAP Commerce project.</li>
-      <li>Open an <code>.impex</code> file.</li>
+      <li>Open an <code>.impex</code> or <code>.fxs</code> file.</li>
+      <li>To run queries and imports, start the server and run <strong>SAP Commerce Tools: Add Environment...</strong> with the hAC URL and user.</li>
     </ol>
     <p class="section-lead">Questions, problems and ideas are welcome in the <a href="https://github.com/hayashiguilherme/sap-commerce-tools-docs/issues">issue tracker</a>.</p>
   </section>
