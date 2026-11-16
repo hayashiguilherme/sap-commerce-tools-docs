@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tools for SAP Commerce · ghlabs</title>
-<meta name="description" content="ImpEx support for SAP Commerce (Hybris) in VS Code and Cursor: validation against your type system, completion, navigation to items.xml and highlighting.">
+<meta name="description" content="ImpEx and FlexibleSearch for SAP Commerce (Hybris) in VS Code and Cursor: validation against your type system, queries on your servers, and an AI assistant that knows your items.xml.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='2' y='2' width='60' height='60' rx='13' fill='%2317202B'/%3E%3Cg fill='none' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round' stroke='%234FB3F6'%3E%3Cpath d='M7 17h5l4 23h26l4-16H14'/%3E%3Ccircle cx='20' cy='48' r='3.2'/%3E%3Ccircle cx='38' cy='48' r='3.2'/%3E%3Cpath d='M15 31.5h29M24 24l1.8 16M34 24l-.8 16'/%3E%3C/g%3E%3Cpath d='M44 8.5l-4.5 5.5 4.5 5.5M54 8.5l4.5 5.5-4.5 5.5' fill='none' stroke='%23F5B83D' stroke-width='2.8' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
 <style>
   :root {
@@ -103,6 +103,7 @@
       ghlabs
     </a>
     <nav>
+      <a href="#ai">AI</a>
       <a href="#features">Features</a>
       <a href="#pro">Pro</a>
       <a href="#install">Install</a>
@@ -116,7 +117,7 @@
     <div>
       <p class="eyebrow">VS Code and Cursor extension</p>
       <h1>Tools for SAP Commerce</h1>
-      <p class="lead">ImpEx and FlexibleSearch support that knows your type system. The extension reads the <code>items.xml</code> files of your project, so completion, validation and navigation work with your real item types, including the ones from your custom extensions. With the server running, queries run from the editor, without opening the hAC.</p>
+      <p class="lead">ImpEx and FlexibleSearch support that knows your type system. The extension reads the <code>items.xml</code> files of your project, so completion, validation and navigation work with your real item types, including the ones from your custom extensions. With the server running, queries run from the editor, without opening the hAC, and the AI assistant of Cursor and VS Code works with your real type system and data.</p>
       <div class="actions">
         <a class="button primary" href="https://marketplace.visualstudio.com/items?itemName=ghlabs.sap-commerce-tools">Install for VS Code</a>
         <a class="button" href="https://open-vsx.org/extension/ghlabs/sap-commerce-tools">Install for Cursor <small>Open VSX</small></a>
@@ -127,6 +128,27 @@
       <figcaption>Types, attributes and modifiers suggested from your <code>items.xml</code>.</figcaption>
     </figure>
   </div>
+
+  <section id="ai">
+    <h2>Your type system in the AI assistant</h2>
+    <p class="section-lead">The extension gives the AI assistant of Cursor (Agent) and VS Code (Copilot agent mode) the type system of your project, through an MCP server that runs inside the extension, on your machine only. Nothing to configure: it is registered when the project opens. The assistant stops guessing attribute names.</p>
+    <div class="features">
+      <div class="feature">
+        <div>
+          <h3>Answers from your items.xml, and ImpEx checked before you see it</h3>
+          <p>The assistant looks up types, attributes and enum values of your project, including your custom extensions, and checks the ImpEx and FlexibleSearch it writes with the same validation as the editor. It even knows which enums are dynamic, with values that live in the database.</p>
+        </div>
+        <figure class="shot" style="max-width: 548px"><img src="images/ai-copilot-type-system.png" width="532" height="355" alt="Copilot in agent mode listing the enum attributes of Product, including dynamic enums, from the project's items.xml" loading="lazy"></figure>
+      </div>
+      <div class="feature">
+        <div>
+          <h3>Real data from your server <span class="badge">Pro</span></h3>
+          <p>With Pro, the assistant runs read-only FlexibleSearch queries on your environments: the values of a dynamic enum, how many products are approved, what an item looks like on stage. Nothing is committed, every query is logged, and production stays closed to the assistant unless you open it.</p>
+        </div>
+        <figure class="shot" style="max-width: 548px"><img src="images/ai-copilot-server-data.png" width="532" height="513" alt="Copilot querying the local server for the values of ProductTaxGroup and for the number of approved products" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
 
   <section id="features">
     <h2>What it does</h2>
@@ -163,9 +185,15 @@
       <div class="feature">
         <div>
           <h3>Run queries against your server</h3>
-          <p>Cmd+Enter runs the query in the hAC of the environment you pick: local, dev, stage or prod, each in its own color. Rows load as you scroll, with no row limit, references show their code instead of a PK, and every row exports to CSV.</p>
+          <p>Cmd+Enter runs the query in the hAC of the environment you pick: local, dev, stage or prod, each in its own color. Rows load as you scroll, with no row limit, references show their code instead of a PK, and rows export to CSV, 100 at a time in the free edition.</p>
         </div>
         <figure class="shot"><img src="images/demo-fxs-console.gif" width="800" height="166" alt="A FlexibleSearch query run with Cmd+Enter, with 7,166 products in the results panel" loading="lazy"></figure>
+      </div>
+      <div class="feature">
+        <div>
+          <h3>Select and copy rows</h3>
+          <p>Click a row or its number to highlight it, Cmd+click (Ctrl+click on Windows and Linux) to add more, Shift+click for a range. Cmd+C copies a cell, or whole rows with the column names: straight into cells in Excel or Google Sheets, and as CSV in a text editor. The free edition copies up to 100 rows at a time.</p>
+        </div>
       </div>
       <div class="feature">
         <div>
@@ -179,7 +207,7 @@
 
   <section id="pro">
     <h2>Pro <span class="badge">coming soon</span></h2>
-    <p class="section-lead">Writing ImpEx and FlexibleSearch and querying your servers stay free. The Pro edition adds the features that move and change data. They are built and tested, and the buttons are already in the editor, marked PRO.</p>
+    <p class="section-lead">Writing ImpEx and FlexibleSearch and querying your servers stay free, with copy and CSV export of up to 100 rows at a time. The Pro edition adds the features that move and change data, and copies and exports every row. They are built and tested, and the buttons are already in the editor, marked PRO.</p>
     <div class="features">
       <div class="feature">
         <div>
@@ -198,8 +226,16 @@
       <div class="feature">
         <div>
           <h3>Edit results in place</h3>
-          <p>Change values right in the results grid, with an editor for each attribute type, review before and after, and save in one transaction through the model service, so interceptors and validation run as usual.</p>
+          <p>Change values right in the results grid, with an editor for each attribute type. Changes stay highlighted until you review the current and new values checked by the server, then save in one transaction through the model service, so interceptors and validation run as usual. Undo puts the previous values back, and production environments stay read-only.</p>
         </div>
+        <figure class="shot"><img src="images/fxs-grid-edit-pending.png" width="1542" height="285" alt="A changed cell highlighted in the results grid, with 1 change ready to review and save" loading="lazy"></figure>
+      </div>
+      <div class="feature">
+        <div>
+          <h3>References from the server</h3>
+          <p>Reference columns such as unit, currency or catalog list the items that exist on the server, filtered as you type. Catalog items come with their catalog version, and the catalog version itself is never edited, so Staged and Online never mix.</p>
+        </div>
+        <figure class="shot"><img src="images/fxs-grid-edit-suggestions.png" width="1545" height="331" alt="The unit of a product edited in the grid, with the units of the server suggested" loading="lazy"></figure>
       </div>
     </div>
     <p class="section-lead" style="margin-top: 36px">Want Pro for your team? Tell us in the <a href="https://github.com/hayashiguilherme/sap-commerce-tools-docs/issues">issue tracker</a>.</p>
