@@ -85,6 +85,12 @@
   .feature > div { max-width: 640px; }
   .feature h3 { margin: 0 0 6px; font-size: 19px; }
   .feature p { margin: 0; color: var(--muted); }
+  .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; margin: 28px 0 8px; max-width: 640px; }
+  .plan { border: 1px solid var(--border); border-radius: 12px; padding: 20px; }
+  .plan h3 { margin: 0 0 6px; }
+  .plan .price { font-size: 28px; font-weight: 700; margin: 0 0 16px; }
+  .plan .price small { font-size: 14px; font-weight: 400; opacity: .7; }
+  .plan-note { font-size: 14px; opacity: .75; margin-bottom: 36px; }
   .badge { font-size: 12px; font-weight: 700; vertical-align: middle; padding: 2px 8px; border-radius: 999px; background: #F5B83D; color: #17202B; }
 
   .steps { margin: 0; padding-left: 22px; }
@@ -221,8 +227,21 @@
   </section>
 
   <section id="pro">
-    <h2>Pro <span class="badge">coming soon</span></h2>
-    <p class="section-lead">Writing ImpEx and FlexibleSearch and querying your servers stay free, with copy and CSV export of up to 100 rows at a time. The Pro edition adds the features that move and change data, and copies and exports every row. They are built and tested, and the buttons are already in the editor, marked PRO.</p>
+    <h2>Pro</h2>
+    <p class="section-lead">Writing ImpEx and FlexibleSearch and querying your servers stay free, with copy and CSV export of up to 100 rows at a time. The Pro edition adds the features that move and change data, and copies and exports every row: the buttons marked PRO in the editor.</p>
+    <div class="plans">
+      <div class="plan">
+        <h3>Monthly</h3>
+        <p class="price">US$ 4 <small>/ month</small></p>
+        <a class="button primary" href="https://checkout.dodopayments.com/buy/pdt_0NrwKsloUaXuK5CK1Lvp2?quantity=1&amp;redirect_url=https%3A%2F%2Fgh-labs.dev%2F%23activate">Start the 7-day free trial</a>
+      </div>
+      <div class="plan">
+        <h3>Yearly <span class="badge">1 month free</span></h3>
+        <p class="price">US$ 44 <small>/ year</small></p>
+        <a class="button primary" href="https://checkout.dodopayments.com/buy/pdt_0NrwLCLupDtFCx1zfAXYY?quantity=1&amp;redirect_url=https%3A%2F%2Fgh-labs.dev%2F%23activate">Start the 7-day free trial</a>
+      </div>
+    </div>
+    <p class="plan-note">Payment by Dodo Payments, the merchant of record: taxes and invoices are handled by them. Cancel at any time.</p>
     <div class="features">
       <div class="feature">
         <div>
@@ -260,7 +279,13 @@
         <figure class="shot"><img src="images/fxs-grid-edit-suggestions.png" width="1545" height="331" alt="The unit of a product edited in the grid, with the units of the server suggested" loading="lazy"></figure>
       </div>
     </div>
-    <p class="section-lead" style="margin-top: 36px">Want Pro for your team? Tell us in the <a href="https://github.com/hayashiguilherme/sap-commerce-tools-docs/issues">issue tracker</a>.</p>
+    <h3 id="activate" style="margin-top: 36px">Activate Pro</h3>
+    <ol class="steps">
+      <li>After the checkout, the license key arrives by email.</li>
+      <li>In VS Code or Cursor, run <strong>SAP Commerce Tools: Enter Pro License Key...</strong> from the Command Palette and paste the key.</li>
+      <li>The PRO buttons unlock right away. <strong>SAP Commerce Tools: Pro License...</strong> shows the license, and deactivates it on a machine you no longer use.</li>
+    </ol>
+    <p class="section-lead">Want Pro for your team? Tell us in the <a href="https://github.com/hayashiguilherme/sap-commerce-tools-docs/issues">issue tracker</a>.</p>
   </section>
 
   <section id="install">
