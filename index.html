@@ -111,6 +111,7 @@
     <nav>
       <a href="#ai">AI</a>
       <a href="#features">Features</a>
+      <a href="#project">Project</a>
       <a href="#pro">Pro</a>
       <a href="#install">Install</a>
       <a href="https://github.com/hayashiguilherme/sap-commerce-tools-docs/issues">Support</a>
@@ -226,6 +227,40 @@
     </div>
   </section>
 
+  <section id="project">
+    <h2>Your whole project, not just the files</h2>
+    <p class="section-lead">An SAP Commerce view of its own, in VS Code and Cursor: what the build loads, whether the project is healthy, the server and the build, and the debugger, without leaving the editor.</p>
+    <div class="features">
+      <div class="feature">
+        <div>
+          <h3>Project view with health checks</h3>
+          <p><code>local.properties</code> and <code>localextensions.xml</code> first, the CCv2 manifests (properties by environment, extensions compared with local), your extensions, the modules and the platform, colored by what the build loads. <strong>Health</strong> tells you before you lose an hour: <code>ant all</code> needed after an <code>items.xml</code> change, the wrong Java for the platform, missing extensions, typos in <code>local.properties</code>, ports in use, a missing database driver. Right-click an extension for why it is loaded, its dependency diagram, or to ask the AI about it.</p>
+        </div>
+        <figure class="shot" style="max-width: 260px"><img src="images/project-view.png" width="227" height="306" alt="The Project view: health with all checks passed, local.properties and localextensions.xml, custom extensions, modules, platform version and logs" loading="lazy"></figure>
+      </div>
+      <div class="feature">
+        <div>
+          <h3>CCv2 manifests, side by side</h3>
+          <p>Every <code>manifest.json</code> of the repository (core-customize, js-storefront...) with its commerce version, extensions and aspects. <strong>Compare properties by environment</strong> puts development, staging and production next to each other and marks the keys whose values differ. <strong>Compare extensions with localextensions.xml</strong> lists what runs in the cloud but not in your local server, and what runs locally but would not be deployed: two classic surprises of a deployment, found before it. The AI assistant reads the manifests too, so it can answer "what is this property in production?".</p>
+        </div>
+      </div>
+      <div class="feature">
+        <div>
+          <h3>Server &amp; Build</h3>
+          <p><code>ant clean all</code>, <code>ant all</code>, start, debug, restart and stop in one click, with how long the server runs and the result of the last build. The hAC, Backoffice, your storefronts and Solr are one click away, with the ports and sites of your own <code>local.properties</code>.</p>
+        </div>
+        <figure class="shot" style="max-width: 280px"><img src="images/server-build.png" width="250" height="297" alt="Server and Build: server running in debug, stop, restart, attach debugger, and links to the hAC, Backoffice, storefronts and Solr" loading="lazy"></figure>
+      </div>
+      <div class="feature">
+        <div>
+          <h3>Debug the server</h3>
+          <p><strong>Debug</strong> starts the server in debug mode and attaches the Java debugger as soon as it is ready. Breakpoints in your controllers and services just work; with Pro, <strong>Inspect Model</strong> shows every attribute of a model as the model service reads it. Above each <code>@IntegrationTest</code> class, <strong>Run with ant</strong> and <strong>Debug</strong> run just that class.</p>
+        </div>
+        <figure class="shot"><img src="images/debug-breakpoint.png" width="1526" height="560" alt="A breakpoint in the product page controller of the storefront, with the product model in the debugger variables" loading="lazy"></figure>
+      </div>
+    </div>
+  </section>
+
   <section id="pro">
     <h2>Pro</h2>
     <p class="section-lead">Writing ImpEx and FlexibleSearch and querying your servers stay free, with copy and CSV export of up to 100 rows at a time. The Pro edition adds the features that move and change data, and copies and exports every row: the buttons marked PRO in the editor.</p>
@@ -277,6 +312,19 @@
           <p>Reference columns such as unit, currency or catalog list the items that exist on the server, filtered as you type. Catalog items come with their catalog version, and the catalog version itself is never edited, so Staged and Online never mix.</p>
         </div>
         <figure class="shot"><img src="images/fxs-grid-edit-suggestions.png" width="1545" height="331" alt="The unit of a product edited in the grid, with the units of the server suggested" loading="lazy"></figure>
+      </div>
+      <div class="feature">
+        <div>
+          <h3>Type diagram</h3>
+          <p>A type with its ancestors, its subtypes, the types its attributes point to and the types that point at it. Click to move through the type system, double-click to open the <code>items.xml</code>, save it as SVG for your documentation.</p>
+        </div>
+        <figure class="shot"><img src="images/type-diagram-product.png" width="1076" height="916" alt="Diagram of Product: its ancestors up to Item, its subtypes, the types it references and the types that reference it" loading="lazy"></figure>
+      </div>
+      <div class="feature">
+        <div>
+          <h3>And more</h3>
+          <p>A Groovy console that rolls back unless you commit, log levels on the server, the same query compared between two environments, what changed in Staged since the last synchronization, the model inspector while debugging, and an OCC token per environment.</p>
+        </div>
       </div>
     </div>
     <h3 id="activate" style="margin-top: 36px">Activate Pro</h3>
