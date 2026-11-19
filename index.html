@@ -219,6 +219,13 @@
       </div>
       <div class="feature">
         <div>
+          <h3>Format, outline, snippets and quick fixes</h3>
+          <p><strong>Format Document</strong> (Shift+Option+F on Mac, Shift+Alt+F on Windows, Ctrl+Shift+I on Linux) lines up the columns of every ImpEx block, header and rows alike, without changing a value; on FlexibleSearch it puts each clause on its own line, keywords in upper case and subqueries indented. Cmd+. (Ctrl+. on Windows and Linux) applies the "Did you mean" suggestion. The Outline view and the breadcrumbs list the blocks of an ImpEx file with their rows, each block folds, and snippets write the usual ImpEx and FlexibleSearch for you.</p>
+        </div>
+        <figure class="shot"><img src="images/impex-format.png" width="968" height="54" alt="An ImpEx UPDATE block after Format Document: the header and the row aligned column by column" loading="lazy"></figure>
+      </div>
+      <div class="feature">
+        <div>
           <h3>Value suggestions</h3>
           <p>Enum attributes suggest their values, merged from every extension, and boolean attributes suggest true and false.</p>
         </div>
@@ -250,6 +257,24 @@
           <p><code>ant clean all</code>, <code>ant all</code>, start, debug, restart and stop in one click, with how long the server runs and the result of the last build. The hAC, Backoffice, your storefronts and Solr are one click away, with the ports and sites of your own <code>local.properties</code>.</p>
         </div>
         <figure class="shot" style="max-width: 280px"><img src="images/server-build.png" width="250" height="297" alt="Server and Build: server running in debug, stop, restart, attach debugger, and links to the hAC, Backoffice, storefronts and Solr" loading="lazy"></figure>
+      </div>
+      <div class="feature">
+        <div>
+          <h3>From Java to the bean and the items.xml</h3>
+          <p>Cmd+click (Ctrl+click) on <code>productService.getProductForCode(...)</code> opens the method in the class the platform really injects, following the aliases of the Spring XML and the beans of your extensions. A link above each injected field opens its bean in the XML. Cmd+click on <code>ProductModel</code> offers the generated class and every <code>items.xml</code> that declares or extends <code>Product</code>. In the Spring XML, beans, aliases and classes are navigable and completed; in <code>items.xml</code>, typecodes in use, missing deployments and unknown types are flagged as you type.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <div>
+          <h3>Usages and impact of a type</h3>
+          <p><strong>Find All References</strong> on a type or an attribute lists where it is used: ImpEx, queries, Java models, Groovy, <code>items.xml</code> and Backoffice configuration. <strong>Show Impact of Type</strong> writes a report before you change it: subtypes, attributes that point at it, and every file that uses it.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <div>
+          <h3>The SAP quality rules, as you type</h3>
+          <p>SAP ships its SonarQube profiles with the platform (<code>build-tools/sonarqube</code>). <strong>Apply SAP Sonar Rules</strong> configures SonarQube for IDE with them: the CXCommerce rules on with their parameters, the default rules SAP leaves out off, and generated code excluded, for Java, JavaScript, TypeScript, Python, HTML, XML and Go. No SonarQube server needed.</p>
+        </div>
       </div>
       <div class="feature">
         <div>
