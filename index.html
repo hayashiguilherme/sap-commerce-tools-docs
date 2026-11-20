@@ -272,6 +272,19 @@
       </div>
       <div class="feature">
         <div>
+          <h3>The server output, in color</h3>
+          <p>The server started from the SAP Commerce view prints ERROR in red, WARN in amber and each logger in blue, so a failure stands out while the platform starts. In stack traces, the frames of your own code are highlighted, open in a click, and the platform's fade out.</p>
+        </div>
+        <figure class="shot"><img src="images/server-colors.png" width="1210" height="346" alt="Server output with INFO in green, WARN lines in amber, ERROR lines in red and loggers in blue" loading="lazy"></figure>
+      </div>
+      <div class="feature">
+        <div>
+          <h3>Queries in Java, and the other SAP files</h3>
+          <p>FlexibleSearch in Java strings, also joined with <code>+</code> and <code>ProductModel._TYPECODE</code>, and in ImpEx values is checked like a <code>.fxs</code> file; Polyglot queries too. <code>extensioninfo.xml</code>, <code>localextensions.xml</code>, <code>beans.xml</code>, the Backoffice configuration and the user rights of ImpEx are checked and navigable. Labels missing from the locales files are added with Cmd+., and F2 renames a type or an attribute of your extensions everywhere it is used, with a preview.</p>
+        </div>
+      </div>
+      <div class="feature">
+        <div>
           <h3>The SAP quality rules, as you type</h3>
           <p>SAP ships its SonarQube profiles with the platform (<code>build-tools/sonarqube</code>). <strong>Apply SAP Sonar Rules</strong> configures SonarQube for IDE with them: the CXCommerce rules on with their parameters, the default rules SAP leaves out off, and generated code excluded, for Java, JavaScript, TypeScript, Python, HTML, XML and Go. No SonarQube server needed.</p>
         </div>
@@ -358,6 +371,19 @@
           <p>A type with its ancestors, its subtypes, the types its attributes point to and the types that point at it. Click to move through the type system, double-click to open the <code>items.xml</code>, save it as SVG for your documentation.</p>
         </div>
         <figure class="shot"><img src="images/type-diagram-product.png" width="1076" height="916" alt="Diagram of Product: its ancestors up to Item, its subtypes, the types it references and the types that reference it" loading="lazy"></figure>
+      </div>
+      <div class="feature">
+        <div>
+          <h3>Log analysis <span class="badge">Pro</span></h3>
+          <p>The console log, the logs you export from CCv2 (JSON or CSV) or the output of the running server, turned into a page: events over time, and errors and warnings grouped, so 1,125 repeats of the same exception are one row with its first and last time. Filter by level, logger or text, open the frames of your code, and send an error with its stack trace to the AI chat. While the server runs, the status bar counts its errors and a new kind of error gets a notice.</p>
+        </div>
+        <figure class="shot"><img src="images/log-analysis.png" width="1200" height="760" alt="Log analysis: events by level, a histogram over time, and errors and warnings grouped with their count and first and last time" loading="lazy"></figure>
+      </div>
+      <div class="feature">
+        <div>
+          <h3>Solr and business processes <span class="badge">Pro</span></h3>
+          <p>The Solr configurations of an environment with their active cores and documents, queries with filters and facets, and the indexer, through the hAC, so it works on CCv2 too. A business process drawn from its <code>process.xml</code>: actions, waits, end states and the loops back; and a map of your extensions with what they require.</p>
+        </div>
       </div>
       <div class="feature">
         <div>
